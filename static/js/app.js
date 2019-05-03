@@ -17,7 +17,7 @@ console.log(tableData);
 // });
 
 submit.on("click", function() {
-
+   
     // Prevent the page from refreshing
     d3.event.preventDefault();
   
@@ -27,12 +27,28 @@ submit.on("click", function() {
     // Get the value property of the input element
     var inputValue = inputElement.property("value");
   
-    console.log(inputValue);
-    console.log(tableData);
-  
-    var filteredData = tableData.filter(UFO => UFO.datetime === inputValue);
-  
-    console.log(filteredData);})
+    // console.log(inputValue);
+    // console.log(tableData);
+    function INPUTDATE(UFO) {
+        return UFO.datetime == inputValue;
+      }
+    var filteredData = tableData.filter(INPUTDATE);
+    
+
+    filteredData.forEach(function(UFOfilteredReport) {
+        console.log(UFOfilteredReport);
+        var row = tbody.append("tr");
+    Object.entries(UFOfilteredReport).forEach(function([key, value]) {
+        console.log(key, value);
+        var cell = row.append("td");
+        cell.text(value); 
+        });
+    });
+   // how do you reset a HTML element or how to clear HTML element  
+   
+});
+
+
 
 
 
